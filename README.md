@@ -291,7 +291,4 @@ Built with:
 - [XGBoost](https://xgboost.readthedocs.io/)
 - [Plotly](https://plotly.com/)
 
----
-
-**Happy Machine Learning! 🚀🤖**
 
