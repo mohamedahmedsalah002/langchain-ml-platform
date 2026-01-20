@@ -10,8 +10,13 @@ from app.models.user import User
 from bson import ObjectId
 
 
-# Password hashing context
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Password hashing context - simplified to avoid bcrypt configuration issues
+# Using pbkdf2_sha256 as primary with bcrypt as backup
+pwd_context = CryptContext(
+    schemes=["pbkdf2_sha256", "bcrypt"],
+    default="pbkdf2_sha256",
+    deprecated="auto"
+)
 
 # HTTP Bearer token security
 security = HTTPBearer()
@@ -24,6 +29,9 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     """Hash a password for storing."""
+    # Truncate password to 72 bytes to avoid bcrypt limitation
+    if len(password.encode('utf-8')) > 72:
+        password = password.encode('utf-8')[:72].decode('utf-8', errors='ignore')
     return pwd_context.hash(password)
 
 

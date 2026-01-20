@@ -1,16 +1,15 @@
 """ML Model database model."""
 from datetime import datetime
 from typing import Dict, Optional
-from beanie import Document, Indexed
-from bson import ObjectId
+from beanie import Document, Indexed, PydanticObjectId
 
 
 class MLModel(Document):
     """ML Model document model."""
     
-    job_id: Indexed(ObjectId)
-    user_id: Indexed(ObjectId)
-    dataset_id: ObjectId
+    job_id: Indexed(PydanticObjectId)
+    user_id: Indexed(PydanticObjectId)
+    dataset_id: PydanticObjectId
     model_path: str
     model_type: str
     problem_type: str

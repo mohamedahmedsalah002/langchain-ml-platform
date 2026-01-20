@@ -1,14 +1,13 @@
 """Chat session database model for LangChain conversations."""
 from datetime import datetime
 from typing import List, Dict
-from beanie import Document, Indexed
-from bson import ObjectId
+from beanie import Document, Indexed, PydanticObjectId
 
 
 class ChatSession(Document):
     """Chat session document model."""
     
-    user_id: Indexed(ObjectId)
+    user_id: Indexed(PydanticObjectId)
     messages: List[Dict] = []  # {role: str, content: str, timestamp: datetime}
     created_at: datetime = datetime.utcnow()
     updated_at: datetime = datetime.utcnow()

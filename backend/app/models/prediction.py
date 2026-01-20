@@ -1,15 +1,14 @@
 """Prediction database model."""
 from datetime import datetime
 from typing import Dict, List, Union
-from beanie import Document, Indexed
-from bson import ObjectId
+from beanie import Document, Indexed, PydanticObjectId
 
 
 class Prediction(Document):
     """Prediction document model."""
     
-    model_id: Indexed(ObjectId)
-    user_id: Indexed(ObjectId)
+    model_id: Indexed(PydanticObjectId)
+    user_id: Indexed(PydanticObjectId)
     input_data: Union[Dict, List[Dict]]
     output: Union[Dict, List]
     probabilities: Union[Dict, List, None] = None

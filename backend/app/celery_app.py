@@ -8,7 +8,7 @@ celery_app = Celery(
     "ml_platform",
     broker=settings.CELERY_BROKER_URL,
     backend=settings.CELERY_RESULT_BACKEND,
-    include=['app.tasks.train_model']
+    include=['app.tasks.train_model', 'app.tasks.train_model_fixed']
 )
 
 # Configure Celery

@@ -1,15 +1,14 @@
 """Training job database model."""
 from datetime import datetime
 from typing import Dict, Optional
-from beanie import Document, Indexed
-from bson import ObjectId
+from beanie import Document, Indexed, PydanticObjectId
 
 
 class TrainingJob(Document):
     """Training job document model."""
     
-    dataset_id: Indexed(ObjectId)
-    user_id: Indexed(ObjectId)
+    dataset_id: Indexed(PydanticObjectId)
+    user_id: Indexed(PydanticObjectId)
     model_type: str  # logistic_regression, random_forest, xgboost, etc.
     problem_type: str  # classification, regression
     target_column: str

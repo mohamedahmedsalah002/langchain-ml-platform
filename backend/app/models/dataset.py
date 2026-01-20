@@ -1,15 +1,14 @@
 """Dataset database model."""
 from datetime import datetime
 from typing import Dict, Optional
-from beanie import Document, Indexed, Link
+from beanie import Document, Indexed, Link, PydanticObjectId
 from pydantic import BaseModel
-from bson import ObjectId
 
 
 class Dataset(Document):
     """Dataset document model."""
     
-    user_id: Indexed(ObjectId)
+    user_id: Indexed(PydanticObjectId)
     filename: str
     filepath: str
     size: int  # File size in bytes
